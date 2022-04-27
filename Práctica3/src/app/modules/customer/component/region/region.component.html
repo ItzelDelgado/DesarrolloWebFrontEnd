@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <div class="card-header">
+        <h3>
+            <i class="fas fa-globe-americas"></i>&nbsp;&nbsp;Regiones
+            <button (click)="createRegion()" (click)="resetearValor()" style="float: right" type="button" class="btn btn-success btn-sm">
+                Agregar Región
+                <i class="fas fa-plus"></i>
+            </button>
+        </h3>
+    </div>
+
+
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table text-center">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center">Región</th>
+                        <th class="text-center"></th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr *ngFor="let region of regions">
+                        <td class="text-center">{{region.region}}</td>
+                        <td>
+                            <button (click)="updateRegion(region)"  type="button" class="btn btn-primary btn-sm">
+                                Actualizar 
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            &nbsp;
+                            &nbsp;  
+                            <button (click)="deleteRegion(region.id_region)"  type="button" class="btn btn-danger btn-sm">
+                                Eliminar 
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+                <div class="text-center">
+                    <button type="button" class="btn btn-info btn-sm" (click)="refreshRegion()">Actualizar lista</button>
+                </div>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal" tabindex="-1" id="region_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="title-region">Hola</h5>
+          <button (click)="closeModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+            <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label for="rate">Ingresa el nombre de la región <span class="text-danger">*</span> </label>
+                  <input type="text" class="form-control marginForm" id="region" formControlName="region" placeholder="Tasa de cambio ...">
+                  <div>
+                    <div>
+                        <span class="text-danger">El nombre de la region es obligatorio<span class="text-danger">*</span></span>
+                    </div>
+                  </div>  
+                </div>
+                <br>
+                <p class="text-right">Campos obligatorios</p>
+                <button type="submit" [disabled]="cargando" class="btn btn-success btn-block" id="register-button">Regristrar</button>
+            </form>
+        </div>
+
+        <div class="modal-footer">
+          <button (click)="closeModal()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+</div>
